@@ -27,9 +27,20 @@ nav {
   height: 100px;
 }
 
+.dash {
+  z-index: 1;
+  justify-content: flex-end;
+  font-weight: bold;
+}
+
+.signout a {
+  color: rgb(255, 131, 131);
+}
+
 nav a {
   text-decoration: none;
   color:white;
+  margin: 15px;
 }
 
 .error {
@@ -65,8 +76,34 @@ form input::placeholder {
   padding: 10px;
   border-radius: 20px;
   cursor: pointer;
+  width: 150px;
 }
 
 .content {
-  margin-top: 8%;
+  margin-top: 10%;
+}
+
+.friends {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-around;
+}
+
+.friend {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 20px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 5px black;
+}
+
+.friend p {
+  margin: 20px;
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
 
 const Login = props => {
@@ -10,20 +12,21 @@ const Login = props => {
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    // const onChangeHandler = e => {
-    //     setLoginValue({ ...loginValue, [e.target.name]: e.target.value })
-    // }
+    const { push } = useHistory();
 
     const login = e => {
         e.preventDefault();
         setIsLoading(true)
-        axios.post(`http://localhost:5000/login`, loginValue)
+        axiosWithAuth()
+            .post(`http://localhost:5000/api/login`, loginValue)
             .then(res => {
-                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('token', res.data.payload);
                 setIsLoading(false);
+                push('/friends')
             })
             .catch(err => {
-                setMessage("Invalid username or password")
+                console.log(err);
+                setMessage("Invalid Credentials")
                 setIsLoading(false);
             })
     }
@@ -32,9 +35,6 @@ const Login = props => {
         <form onSubmit={login}>
             <h2>Welcome Back</h2>
             <div className="error">{message}</div>
-            {isLoading
-                ? <img className="loading" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.clipartmax.com%2Fmiddle%2Fm2H7N4N4i8K9A0b1_file-ei-heart-svg-love-heart-outline-tattoo%2F&psig=AOvVaw1kzBjIflRnHcCV-Vm7bGOl&ust=1592408336697000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMj56rzVhuoCFQAAAAAdAAAAABAa" alt="" />
-                : ""}
             <input type="text"
                 name="username"
                 value="Lambda School"
