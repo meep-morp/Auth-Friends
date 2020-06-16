@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { FriendsContext } from "../contexts/friendsContext";
@@ -28,20 +29,31 @@ const FriendsList = props => {
             })
     }
 
+    const editPage = (id) => {
+        
+    }
+
     return (
-        <div className="friends">
+        <>
             <h2>Your Friend's List</h2>
-            {friends.map(friend => {
-                return (
-                    <div className="friend">
-                        <p>{friend.name}</p>
-                        <p>{friend.email}</p>
-                        <p>{friend.age}</p>
-                        <p onClick={() => deleteFriend(friend.id)}>X</p>
-                    </div>
-                )
-            })}
-        </div>
+            <div className="friends">
+                {friends.map(friend => {
+                    return (
+                        <div className="friend">
+                            <p>{friend.name}</p>
+                            <p>{friend.email}</p>
+                            <p>{friend.age} years old</p>
+                            <p
+                                className="button"
+                                onClick={() => deleteFriend(friend.id)}
+                            >
+                                X</p>
+                            <p className="button">Edit</p>
+                        </div>
+                    )
+                })}
+            </div>
+        </>
     )
 }
 

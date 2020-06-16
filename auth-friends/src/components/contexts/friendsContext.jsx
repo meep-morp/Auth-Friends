@@ -6,6 +6,7 @@ export const FriendsContext = createContext();
 
 export const FriendsProvider = props => {
     const [friends, setFriends] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
 
     return (
         <FriendsContext.Provider
